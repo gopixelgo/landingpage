@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>testdeeplink03</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+		if (window.hasLoaded != true) {
+			window.hasLoaded = true;
+			let requestParams = GetRequest();
+			let id = requestParams["id"];
+			let ad = requestParams["ad"];
+			let adObj = JSON.parse(ad);
+			if (adObj.network == "organic") {
+				setTimeout("javascript:location.href='http://www.quickgame.com/play?id=242'", 1);
+			} else {
+				let url = "https://cdn10.cdngoto.com/hamini_release/index.html?pkg=com.springy.owl.taist&fromPartner=com.springy.owl.taist21&gps_adid=" + id;
+				location.href = "springyowl://springyowl?pwpxps="+encodeURIComponent(url);
+			}
+		}
+	</script>
+</body>
+</html>
