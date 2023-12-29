@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Springy Owl</title>
+</head>
+<body>
+<script type="text/javascript">
+    function GetRequest() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    if (window.hasLoaded != true) {
+        window.hasLoaded = true;
+        let requestParams = GetRequest();
+        let id = requestParams["id"];
+        let ad = requestParams["ad"];
+        let network = "";
+        try {
+            network = JSON.parse(ad).network;
+        } catch (e) {
+            network = ad;
+        }
+        if (network == "Organic" || network == "organic") {
+            location.href='https://gopixelgo.github.io/landingpage/testhref/test.json';
+        } else {
+            location.href='https://gopixelgo.github.io/landingpage/testhref/data.json';
+        }
+    }
+</script>
+</body>
+</html>
